@@ -17,3 +17,34 @@
 - метод __iter__
 - метод __next__
 """
+# from pyflakes.checker import counter
+
+
+class Counter:
+    value: int
+
+    def __init__(self, n=0):
+        self.value = n
+
+    def increase(self, num=1):
+        self.value += num
+
+    def decrease(self, num=1):
+        self.value -= num
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        value = self.value
+        self.increase()
+        return value
+
+
+if __name__ == '__main__':
+    counter = Counter()
+    c = iter(counter)
+    print(next(c))
+    print(next(c))
+    print(next(c))
+    print(next(c))
